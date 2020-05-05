@@ -1,4 +1,4 @@
-import { IBrewdogAPIHandler } from "./IbrewdogAPIHandler";
+import { IBrewdogAPIHandler } from "./IBrewdogAPIHandler";
 
 export const brewdogAPI: IBrewdogAPIHandler = {
     getAllBeers: ()  => {
