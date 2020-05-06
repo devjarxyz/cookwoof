@@ -21,6 +21,7 @@ const sagaMiddleWare = createSagaMiddleWare();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleWare));
 const store = createStore(reducers(history), enhancer);
 
+sagaMiddleWare.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store} context={ReactReduxContext}>
