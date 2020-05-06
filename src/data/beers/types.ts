@@ -31,7 +31,7 @@ export interface BrewdogAllBeersErrorAction{
 export interface BrewdogFoodBeersRequestAction {
 
     type: BrewdogBeersTypes.GET_FOOD_BEERS_REQUEST;
-    paylod: {
+    payload: {
         food: string;
     };
     
