@@ -16,6 +16,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import Layout from './components/Layout';
 import Home from './Scenes/Home';
 
+import './index.css';
+
 export const history = createBrowserHistory()
 const sagaMiddleWare = createSagaMiddleWare();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleWare));

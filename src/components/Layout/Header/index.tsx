@@ -3,14 +3,16 @@ import * as React from 'react';
 function Header() {
 
     return (
-        <nav>
-            
-            <div>icon food</div>
-            <div>icon all</div>
-            <div>icon settings</div>
-            <div>icon search</div>
-            
-        </nav>
+        <div className="header">
+            <nav className="header--nav">
+                <div className="header--nav--item">icon food</div>
+                <div className="header--nav--item">icon all</div>
+                <div className="header--nav--item">icon settings</div>
+                <div className="header--nav--item">icon search</div>
+                <div className="header--nav--animation header--nav--start-home" />
+            </nav>
+        </div>
+        
     );
 }
 
