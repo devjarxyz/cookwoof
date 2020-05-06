@@ -7,6 +7,7 @@ export const brewdogAPI: IBrewdogAPIHandler = {
     getAllBeers: async ()  => {
         let url = `${brewBase}${brewDataNames.beers}`;
         let result = await axios.get(url).then((response: any) => {
+            
             let resData: Beer[] = response.data;
             return resData;
         

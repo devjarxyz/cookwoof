@@ -4,13 +4,18 @@ import { getAllBeersRequest, getFoodBeersRequest, setCurrentTab } from '../../..
 import './brewdog.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import BrewdogBeers from './BrewdogBeers';
+import { ApplicationState } from '../../../data/root-reducer';
+import { Beer } from '../../../data/beers/types';
 
 interface BrewdogProps {
     getAllBeers: () => void;
     getFoodBeers: (food: string) => void;
+    beers: Beer[];
+    loadingBeers: boolean;
 }
 
-function Brewdog({ getAllBeers, getFoodBeers }: BrewdogProps) {
+function Brewdog({ getAllBeers, getFoodBeers, beers, loadingBeers }: BrewdogProps) {
     const [ currentSwipeable, setCurrentSwipeable ] = React.useState(0);
     let brewSwiper: Swiper;
     
@@ -59,9 +64,9 @@ function Brewdog({ getAllBeers, getFoodBeers }: BrewdogProps) {
               
             <div className="swiper-container">
                 <div className="swiper-wrapper">
-                    <div className="swiper-slide">Slide 1</div>
-                    <div className="swiper-slide">Slide 2</div>
-                    <div className="swiper-slide">Slide 3</div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
                    
                 </div>
             </div>
@@ -70,10 +75,13 @@ function Brewdog({ getAllBeers, getFoodBeers }: BrewdogProps) {
         </div>
     );
 }
-
+const mapAppStateToProps = (state: ApplicationState) => ({
+    beers: state.brewdogBeers.items,
+    loadingBeers: state.brewdogBeers.loading
+});
 const mapDispatchToProps = (dispatch: any) => ({
     getAllBeers: bindActionCreators(getAllBeersRequest, dispatch),
     getFoodBeers: bindActionCreators(getFoodBeersRequest, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(Brewdog);
+export default connect(mapAppStateToProps, mapDispatchToProps)(Brewdog);

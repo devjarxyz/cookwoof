@@ -2,15 +2,18 @@ import * as React from 'react';
 import { Beer } from '../../../../data/beers/types';
 
 interface BrewdogBeersProps {
-    beers: Beer[];
+    beers?: Beer[];
+    loadingBeers: boolean;
 }
 
 const BrewdogBeers = (props: BrewdogBeersProps) => {
 
-    return props.beers.length > 0 ? (
-        <div>{props.beers.length}</div>
+    return !props.loadingBeers && props.beers ? (
+        <div>{props.beers?.length}</div>
     ) : 
     (
         <div className="loading" >loading...</div>
     )
 }
+
+export default BrewdogBeers;
