@@ -15,7 +15,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import Layout from './components/Layout';
 import Home from './Scenes/Home';
-
+import 'swiper/css/swiper.min.css'
 import './index.css';
 
 export const history = createBrowserHistory()

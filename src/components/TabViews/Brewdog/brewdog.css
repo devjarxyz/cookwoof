@@ -1,0 +1,58 @@
+.home--filter-swipe-tabs {
+    background-color: #333;
+    color: white;
+    height: 50px;
+    
+    
+}
+.home--filter-swipe-tabs ul {
+    margin: 0;
+
+    display: flex;
+    align-content: center;
+    height: 100%;
+    justify-content: space-evenly;
+    
+}
+
+.home--filter-swipe-tabs ul li {
+    color: gray;
+    font-weight: 700;
+}
+
+.home--filter-swipe-tabs ul li.active {
+    color: white;
+
+}
+ul {
+    list-style: none;
+}
+
+.home--filter-swipe-tabs ul li {
+    align-self: center;
+    width: 20vw;
+}
+
+.home--data-list-view {
+    min-height: 50vh;
+    height: 400px;
+}
+
+.home--data-list-view-swipe-pages {
+    height: 100%;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    /*this gives the dimension of slider container*/
+    /*these values will make the container as big as the parent div*/
+    overflow: hidden;
+    /*important parameter to not disrupt the container when slides increases in coverflow and other effect*/
+}
+.swiper-slide {
+    width:100%;
+    height:100%;
+    /*this one holds the dimension of each slides and can be changed according to the user wish*/
+}
+

@@ -2,35 +2,3 @@
     width: 100%;
     height: 100%;
 }
-.home--filter-swipe-tabs {
-    background-color: #333;
-    color: white;
-    height: 5%;
-    
-    
-}
-.home--filter-swipe-tabs ul {
-    margin: 0;
-
-    display: flex;
-    align-content: center;
-    height: 100%;
-    justify-content: space-evenly;
-    
-}
-ul {
-    list-style: none;
-}
-.home--filter-swipe-tabs ul li {
-    align-self: center;
-    width: 20vw;
-}
-
-.home--data-list-view {
-    min-height: 50vh;
-    height: 400px;
-}
-
-.home--data-list-view-swipe-pages {
-    height: 100%;
-}
