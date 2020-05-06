@@ -64,3 +64,5 @@ export interface brewdogState {
     loading: boolean;
     error?: any;
 }
+
+export default beersReducer;
