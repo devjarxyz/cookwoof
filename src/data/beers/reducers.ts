@@ -1,12 +1,14 @@
-import { BrewdogTypes, Beer, BrewdogBeersTypes } from './types';
+import { BrewdogTypes, Beer, BrewdogBeersTypes, TabTypes } from './types';
 
 const INITAL_STATE: brewdogState = {
     items: [],
     loading: false,
-    error: ''
+    error: '',
+    currentTab: TabTypes.BREWDOG_TAB
 }
 
-const beersReducer = (state = INITAL_STATE, action: BrewdogTypes): brewdogState => {
+const beersReducer = (state = INITAL_STATE, action: BrewdogTypes ): brewdogState => {
+    
     switch (action.type) {
         case BrewdogBeersTypes.GET_ALL_BEERS_REQUEST: {
             return {
@@ -54,6 +56,13 @@ const beersReducer = (state = INITAL_STATE, action: BrewdogTypes): brewdogState 
                 error
             }
         }
+        case BrewdogBeersTypes.SET_CURRENT_TAB_REQUEST: {
+       
+            return {
+                ...state,
+                currentTab: action.payload.tab
+            }
+        }
         default: 
             return INITAL_STATE;
     }
@@ -63,6 +72,7 @@ export interface brewdogState {
     items: Beer[];
     loading: boolean;
     error?: any;
+    currentTab: TabTypes;
 }
 
 export default beersReducer;

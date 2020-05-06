@@ -3,8 +3,11 @@ import {
     BrewdogFoodBeersRequestAction, BrewdogFoodBeersSuccessAction, 
     BrewdogFoodBeersErrorAction, 
     BrewdogAllBeersSuccessAction,
-    BrewdogAllBeersErrorAction
+    BrewdogAllBeersErrorAction,
+    TabTypes,
+    SetCurrentTabAction, 
 } from './types';
+
 
 export const getAllBeersSuccess = ({items}: {items: Beer[]}): BrewdogAllBeersSuccessAction => ({
     type: BrewdogBeersTypes.GET_ALL_BEERS_SUCCESS,
@@ -30,18 +33,25 @@ export const getFoodBeersSuccess = ({items}: {items: Beer[]}): BrewdogFoodBeersS
     payload: {
         beers: items
     }
-})
+});
 
 export const getFoodBeersError = ({error}: any): BrewdogFoodBeersErrorAction => ({
     type: BrewdogBeersTypes.GET_FOOD_BEERS_ERROR,
     payload: {
         error
     }
-})
+});
 
 export const getFoodBeersRequest = (food: string): BrewdogFoodBeersRequestAction => ({
     type: BrewdogBeersTypes.GET_FOOD_BEERS_REQUEST,
     payload: {
         food
     }
-})
+});
+
+export const setCurrentTab = (tab: TabTypes): SetCurrentTabAction => ({
+    type: BrewdogBeersTypes.SET_CURRENT_TAB_REQUEST,
+    payload: {
+        tab
+    }
+});

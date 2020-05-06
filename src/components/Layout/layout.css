@@ -57,50 +57,32 @@
 	transition: all .5s ease 0s;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    border-bottom-color: white;
 
     
 }
-.header--nav--item:nth-child(1):hover~.header--nav--animation {
+.header--nav--item.active:nth-child(1)~.header--nav--animation {
 	width: 20vw;
 	left: 2.5vw;
 	background-color: #333;
 }
 
-.header--nav--item:nth-child(2):hover~.header--nav--animation {
+.header--nav--item.active:nth-child(2)~.header--nav--animation {
 	width: 20vw;
 	left: 27.5vw;
 	background-color: #333;
 }
-.header--nav--item:nth-child(3):hover~.header--nav--animation {
+.header--nav--item.active:nth-child(3)~.header--nav--animation {
 	width: 20vw;
 	left: 52.5vw;
 	background-color: #333;
 }
-.header--nav--item:nth-child(4):hover~.header--nav--animation {
+.header--nav--item.active:nth-child(4)~.header--nav--animation {
 	width: 20vw;
 	left: 77.5vw;
 	background-color: #333;
 }
 
-.header--nav--animation:before {
-    left: -10%;
-    width: 10%;
-    height: 10%;
-    color: #333;
-    content: "";
-    position: absolute;
-    background: #333;
-    bottom: 0;
-    z-index: 1;
-}
-.header--nav--animation:after {
-    position: absolute;
-    right: -10%;
-    width: 10%;
-    height: 10%;
-    color: #333;
-    background: #333;
-    content: "";
-    z-index: 1;
-    bottom: 0;
+.header-sub-header {
+    width: 100%;
 }

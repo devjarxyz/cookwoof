@@ -4,11 +4,27 @@ export enum BrewdogBeersTypes {
     GET_ALL_BEERS_ERROR = 'brewdog/get_all_beers_error',
     GET_FOOD_BEERS_REQUEST = 'brewdog/get_food_beers_request',
     GET_FOOD_BEERS_SUCCESS = 'brewdog/get_food_beers_success',
-    GET_FOOD_BEERS_ERROR = 'brewdog/get_food_beers_error'
+    GET_FOOD_BEERS_ERROR = 'brewdog/get_food_beers_error',  
+    SET_CURRENT_TAB_REQUEST = 'tabs/set_current_request'
 }
 
-export enum BrewdogFoodBeersTypes {
+export enum TabTypes {
+    BREWDOG_TAB = 'brewdog_tab',
+    WHATEVER_TAB = 'whatever_tab',
+    SETTINGS_TAB = 'settings_tab',
+    SEARCH_TAB = 'search_tab'
+}
+
+// export enum NavigationTypes {
    
+// }
+
+export interface SetCurrentTabAction {
+   type: BrewdogBeersTypes.SET_CURRENT_TAB_REQUEST;
+   payload: {
+       tab: TabTypes;
+   }
+
 }
 
 export interface BrewdogAllBeersRequestAction {
@@ -50,7 +66,6 @@ export interface BrewdogFoodBeersErrorAction {
         error: any;
     };
 };
-
 
 export interface Beer {
     id: number;
@@ -106,7 +121,7 @@ export interface IngredientsData {
 }
 
 export type BrewdogTypes = BrewdogAllBeersRequestAction | BrewdogAllBeersSuccessAction | BrewdogAllBeersErrorAction |
-                            BrewdogFoodBeersRequestAction | BrewdogFoodBeersSuccessAction | BrewdogFoodBeersErrorAction;
+                            BrewdogFoodBeersRequestAction | BrewdogFoodBeersSuccessAction | BrewdogFoodBeersErrorAction | SetCurrentTabAction;
 
 /**
  * A more generic way to check, for future scaling, type-guarding with ts is rather nice
