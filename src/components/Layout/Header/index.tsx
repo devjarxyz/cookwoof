@@ -8,11 +8,11 @@ function Header() {
                 <h1>Demo App</h1>
             </div>
             <nav className="header--nav">
-                <div className="header--nav--item"><h3>all</h3></div>
-                <div className="header--nav--item"><h3>food</h3></div>
-                <div className="header--nav--item"><h3>settings</h3></div>
-                <div className="header--nav--item"><h3>search</h3></div>
-                <div className="header--nav--animation header--nav--start-home" />
+                <div className="header--nav--item"><span><h4>all</h4></span></div>
+                <div className="header--nav--item"><span><h4>food</h4></span></div>
+                <div className="header--nav--item"><span><h4>settings</h4></span></div>
+                <div className="header--nav--item"><span><h4>search</h4></span></div>
+                <div className="header--nav--animation header--nav--start-home " />
             </nav>
         </div>
         
