@@ -3,7 +3,6 @@ import './home.css';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getAllBeersRequest, getFoodBeersRequest } from '../../data/beers/actions';
 
 import { ApplicationState } from '../../data/root-reducer';
 import { TabTypes } from '../../data/beers/types';

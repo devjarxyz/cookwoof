@@ -3,14 +3,19 @@ import Swiper from 'swiper'
 import { getAllBeersRequest, getFoodBeersRequest, setCurrentTab } from '../../../data/beers/actions';
 import './brewdog.css';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-function Brewdog() {
+interface BrewdogProps {
+    getAllBeers: () => void;
+    getFoodBeers: (food: string) => void;
+}
+
+function Brewdog({ getAllBeers, getFoodBeers }: BrewdogProps) {
     const [ currentSwipeable, setCurrentSwipeable ] = React.useState(0);
     let brewSwiper: Swiper;
-    const swipeCallback = (index: number, elem: HTMLElement) => {
-        setCurrentSwipeable(index);
-        console.log(index);
-    }
+    
+
+    //Some default settings for Swiper, not very friendly tho :)
     React.useEffect(() => {
         brewSwiper = new Swiper('.swiper-container', {
             speed: 0,
@@ -25,13 +30,22 @@ function Brewdog() {
             
         });
         brewSwiper.on('slideChange', () => {
-            console.log(brewSwiper.activeIndex);
+           
             setCurrentSwipeable(brewSwiper.activeIndex)
-        })
-    }, [])
+        });
 
-    
-   
+        getAllBeers();
+    }, [])
+    React.useEffect(() => {
+        if(currentSwipeable === 0) {
+            getAllBeers();
+        } else if (currentSwipeable === 1) {
+            getFoodBeers('pizza');
+        } else {
+            getFoodBeers('steak');
+        }
+    }, [currentSwipeable])
+
     return(
         <div className="brewdog">
              <div className="home--filter-swipe-tabs">
@@ -57,9 +71,9 @@ function Brewdog() {
     );
 }
 
-const mapDispatchToProps = () => ({
-    getAllBeersRequest,
-    getFoodBeersRequest
+const mapDispatchToProps = (dispatch: any) => ({
+    getAllBeers: bindActionCreators(getAllBeersRequest, dispatch),
+    getFoodBeers: bindActionCreators(getFoodBeersRequest, dispatch)
 });
 
 export default connect(null, mapDispatchToProps)(Brewdog);
