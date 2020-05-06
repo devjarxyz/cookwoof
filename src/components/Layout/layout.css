@@ -35,7 +35,8 @@
     cursor: pointer;
     background-color: transparent;
     width: 25%;
-    z-index: 2;
+	z-index: 2;
+	border-bottom: 1px solid #333;
     
 }
 .header--nav--item span {
@@ -85,4 +86,15 @@
 
 .header-sub-header {
     width: 100%;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.footer.active {
+	bottom: 60%;
 }

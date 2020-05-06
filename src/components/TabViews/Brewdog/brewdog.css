@@ -1,7 +1,7 @@
 .home--filter-swipe-tabs {
     background-color: #333;
     color: white;
-    height: 50px;
+    height: 10%;
     
     
 }
@@ -34,8 +34,8 @@ ul {
 }
 
 .home--data-list-view {
-    min-height: 50vh;
-    height: 400px;
+    height: 90%;
+
 }
 
 .home--data-list-view-swipe-pages {
@@ -56,3 +56,6 @@ ul {
     /*this one holds the dimension of each slides and can be changed according to the user wish*/
 }
 
+.brewdog {
+    height: 100%;
+}

@@ -1,0 +1,42 @@
+.brewdog-beers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.brewdog .swiper-container {
+    overflow-y: auto;
+}
+
+.brewdog-beers--beer-wrapper {
+    flex-grow: 1;
+    max-width: 26%;
+    margin: 3%;
+
+    
+}
+.beer-container--image-wrapper img {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.beer-container--image-wrapper {
+
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    border: 1px solid #333;
+    padding: 10px 30px;
+}
+
+.beer-container {
+    margin: auto;
+    text-align: center;
+    
+}
+
+@media (min-width: 600px) {
+    .beer-container--beer-wrapper {
+        max-width: 100px;
+    }
+}

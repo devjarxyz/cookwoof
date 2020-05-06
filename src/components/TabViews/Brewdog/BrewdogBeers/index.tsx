@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Beer } from '../../../../data/beers/types';
+import BrewdogBeer from './BrewdogBeer';
+import './brewdogbeer.css';
 
 interface BrewdogBeersProps {
     beers?: Beer[];
@@ -8,8 +10,14 @@ interface BrewdogBeersProps {
 
 const BrewdogBeers = (props: BrewdogBeersProps) => {
 
+    
     return !props.loadingBeers && props.beers ? (
-        <div>{props.beers?.length}</div>
+        <div className="brewdog-beers">{ props.beers.map((beer: Beer) => {
+            return <div key={beer.id} className="brewdog-beers--beer-wrapper">
+                <BrewdogBeer beer={beer} />
+            </div>;
+            
+        })}</div>
     ) : 
     (
         <div className="loading" >loading...</div>
