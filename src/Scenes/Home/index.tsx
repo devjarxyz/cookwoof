@@ -3,7 +3,7 @@ import './home.css';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-
+import _ from 'lodash';
 import { ApplicationState } from '../../data/root-reducer';
 import { TabTypes, Beer } from '../../data/beers/types';
 import Brewdog from '../../components/TabViews/Brewdog';
@@ -36,14 +36,12 @@ function Home({ currentTab }: HomeProps) {
         setSelectedBeerState(prev => beer);
 
     }
-    
+
     React.useEffect(() => {
-        if(selectedBeerState && mainRef.current){
+        if(!_.isEmpty(selectedBeerState) && mainRef.current){
             activateModal('beerInfo');
         }
-    }, [selectedBeerState])
-    
-
+    }, [selectedBeerState]);
 
     return (
         <div className="home" ref={mainRef}>

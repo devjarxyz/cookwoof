@@ -1,11 +1,16 @@
 import * as React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-const Footer = () => {
+function Footer () {
+    
+
     return(
         <section className="footer">
             <div className="inner">
                 <header>
-                    stuff
+                   <hr style={{width: '5%', margin: '2px auto'}} onClick={()}/>
+                   <p><FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart </p>
                 </header>
                 
                 <div className="copyright">
