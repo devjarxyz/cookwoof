@@ -1,10 +1,12 @@
-import { BrewdogTypes, Beer, BrewdogBeersTypes, TabTypes } from './types';
+import { BrewdogTypes, Beer, BrewdogBeersTypes, TabTypes, Cart } from './types';
 
 const INITAL_STATE: brewdogState = {
     items: [],
     loading: false,
     error: '',
-    currentTab: TabTypes.BREWDOG_TAB
+    currentTab: TabTypes.BREWDOG_TAB,
+    cart: []
+
 }
 
 const beersReducer = (state = INITAL_STATE, action: BrewdogTypes ): brewdogState => {
@@ -63,6 +65,52 @@ const beersReducer = (state = INITAL_STATE, action: BrewdogTypes ): brewdogState
                 currentTab: action.payload.tab
             }
         }
+        case BrewdogBeersTypes.ADD_BEER_REQUEST: {
+            return {
+                ...state,
+                cart: [{
+                    beer: action.payload.beer,
+                    amount: 1
+                }]
+            }
+        }
+        case BrewdogBeersTypes.REMOVE_BEER_REQUEST: {
+            return {
+                ...state,
+                cart: INITAL_STATE.cart
+            }
+        }
+        case BrewdogBeersTypes.PLUS_BEER_REQUEST: {
+            let newCart = [...state.cart];
+            let beerToChangeIndex = newCart.findIndex(item => item.beer.id === action.payload.beer.id);
+            if(beerToChangeIndex > -1) {
+                newCart[beerToChangeIndex].amount +=  1;
+                return {
+                    ...state,
+                    cart: newCart
+                }
+            }   
+
+            
+        }
+        case BrewdogBeersTypes.MINUS_BEER_REQUEST: {
+            let newCart = [...state.cart];
+            let beerToChangeIndex = newCart.findIndex(item => item.beer.id === action.payload.beer.id);
+            if(beerToChangeIndex > -1) {
+                newCart[beerToChangeIndex].amount -= 1;
+                if(newCart[beerToChangeIndex].amount < 1) {
+                    return {
+                        ...state,
+                        cart: INITAL_STATE.cart
+                    }
+                }
+                return {
+                    ...state,
+                    cart: newCart
+                }
+            }   
+            
+        }
         default: 
             return INITAL_STATE;
     }
@@ -73,6 +121,9 @@ export interface brewdogState {
     loading: boolean;
     error?: any;
     currentTab: TabTypes;
+    cart: Cart[]
 }
+
+
 
 export default beersReducer;

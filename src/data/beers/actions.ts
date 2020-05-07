@@ -60,27 +60,27 @@ export const setCurrentTab = (tab: TabTypes): SetCurrentTabAction => ({
     }
 });
 
-export const addBeer = (beer: Beer): AddBeerAction => ({
+export const addTheBeer = (beer: Beer): AddBeerAction => ({
     type: BrewdogBeersTypes.ADD_BEER_REQUEST,
     payload: {
         beer
     }
 });
 
-export const removeBeer = (beer: Beer): RemoveBeerAction => ({
+export const removeTheBeer = (beer: Beer): RemoveBeerAction => ({
     type: BrewdogBeersTypes.REMOVE_BEER_REQUEST,
     payload: {
         beer
     }
 });
-export const plusBeer = (beer: Beer): PlusBeerAction => ({
+export const plusMoreBeer = (beer: Beer): PlusBeerAction => ({
     type: BrewdogBeersTypes.PLUS_BEER_REQUEST,
     payload: {
         beer
     }
 });
 
-export const minusBeer = (beer: Beer): MinusBeerAction => ({
+export const minusLessBeer = (beer: Beer): MinusBeerAction => ({
     type: BrewdogBeersTypes.MINUS_BEER_REQUEST,
     payload: {
         beer

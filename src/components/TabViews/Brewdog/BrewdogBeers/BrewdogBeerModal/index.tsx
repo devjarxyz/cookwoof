@@ -2,14 +2,18 @@ import * as React from 'react';
 import './brewdogbeermodal.css';
 import { Beer } from '../../../../../data/beers/types';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addTheBeer } from '../../../../../data/beers/actions';
 
 interface BrewdogBeerModalProps {
     beer: Beer;
     close: () => void;
     isActive: boolean;
+    addBeer: (beer: Beer) => void;
 }
 
-function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
+function BrewdogBeerModal ({beer, close, isActive, addBeer}: BrewdogBeerModalProps) {
     const modalRef = React.useRef<HTMLDivElement>(null);
     const [ showfullDesc, setShowFulldesc ] = React.useState(false);
     const [ showfullPairing, setShowFullPairing ] = React.useState(false);
@@ -63,6 +67,11 @@ function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
         
     };
 
+    const addBeerHandler = (beer: Beer) => {
+        addBeer(beer);
+        close();
+    }
+
     return ReactDOM.createPortal(
         <div className="beer-modal" ref={modalRef}>
             <div className="beer-modal-close-button-container">
@@ -84,7 +93,7 @@ function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
                        <div className="img" style={{backgroundImage: `url(${beer.image_url})`}}/>
                     </div>
                     <div className="beer-modal--container-info-container--right-child--button">
-                        <button>ADD TO CART</button>
+                        <button onClick={() => addBeerHandler(beer)}>ADD TO CART</button>
                     </div>
                 </div>
                 
@@ -93,4 +102,8 @@ function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
     );
 }
 
-export default BrewdogBeerModal;
+const mapDispatchToProps = (dispatch: any) => ({
+    addBeer: bindActionCreators(addTheBeer, dispatch)
+})
+
+export default connect(null, mapDispatchToProps)(BrewdogBeerModal);

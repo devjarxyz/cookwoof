@@ -154,6 +154,11 @@ export interface IngredientsData {
        
 }
 
+export interface Cart {
+    beer: Beer;
+    amount: number;  
+}
+
 export type BrewdogTypes = BrewdogAllBeersRequestAction | BrewdogAllBeersSuccessAction | BrewdogAllBeersErrorAction |
                             BrewdogFoodBeersRequestAction | BrewdogFoodBeersSuccessAction | BrewdogFoodBeersErrorAction | SetCurrentTabAction |
                             AddBeerAction | RemoveBeerAction | PlusBeerAction | MinusBeerAction;
