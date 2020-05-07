@@ -36,16 +36,17 @@
     background-color: transparent;
     width: 25%;
 	z-index: 2;
-	border-bottom: 1px solid #333;
+
     
 }
+
 .header--nav--item span {
     display: flex;
     justify-content: center;
     height: 100%;
-    
 
 }
+
 .header--nav--item span * {
     align-self: flex-end;
 }
@@ -58,7 +59,7 @@
 	transition: all .5s ease 0s;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    border-bottom-color: white;
+
 
     
 }
@@ -97,4 +98,8 @@
 
 .footer.active {
 	bottom: 60%;
+}
+
+.modal-is-visible #layout {
+	filter: blur(4px);
 }

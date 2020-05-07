@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { ApplicationState } from '../../data/root-reducer';
-import { TabTypes } from '../../data/beers/types';
+import { TabTypes, Beer } from '../../data/beers/types';
 import Brewdog from '../../components/TabViews/Brewdog';
 import Whatever from '../../components/TabViews/Whatever';
+import BrewdogBeerModal from '../../components/TabViews/Brewdog/BrewdogBeers/BrewdogBeerModal';
 
 interface HomeProps {
     
@@ -15,13 +16,39 @@ interface HomeProps {
 }
 
 function Home({ currentTab }: HomeProps) {
-     
-   
+    const mainRef = React.useRef<HTMLDivElement>(null); 
+    const initModalState = {beerInfo: false, others: false };
+
+    const [ modalState, setModalState ] = React.useState({...initModalState});
+    const [ selectedBeerState, setSelectedBeerState ] = React.useState({} as Beer);
+
+    const closeModal = () => {
+        document.body.classList.remove('modal-is-visible');
+        setModalState(initModalState);
+      };
+
+    const activateModal = (name: string) => {
+        setModalState({...initModalState, [name]: true});
+        document.body.classList.add('modal-is-visible');
+    }
+    const selectBeer = (beer: Beer) => {
+        console.log('selected beer', beer);
+        setSelectedBeerState(prev => beer);
+
+    }
+    
+    React.useEffect(() => {
+        if(selectedBeerState && mainRef.current){
+            activateModal('beerInfo');
+        }
+    }, [selectedBeerState])
+    
+
 
     return (
-        <div className="home">
+        <div className="home" ref={mainRef}>
             { currentTab === TabTypes.BREWDOG_TAB &&
-                <Brewdog />
+                <Brewdog selectBeer={selectBeer} />
             } 
             { currentTab === TabTypes.WHATEVER_TAB &&
                 <Whatever />
@@ -32,6 +59,9 @@ function Home({ currentTab }: HomeProps) {
             }
             { currentTab === TabTypes.SEARCH_TAB &&
                 <div>Search and stuff </div>
+            }
+            { modalState.beerInfo &&
+                <BrewdogBeerModal beer={selectedBeerState} close={closeModal} isActive={modalState.beerInfo}/>
             }
            
         </div>

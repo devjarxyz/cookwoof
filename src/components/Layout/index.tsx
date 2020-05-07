@@ -8,13 +8,13 @@ const Layout: React.FunctionComponent<any> = (
   ) => {
 
     return (
-        <>
+        <div id="layout">
             <Header />
 
             {props.children}
 
             <Footer />
-        </>
+        </div>
     );
 
 }

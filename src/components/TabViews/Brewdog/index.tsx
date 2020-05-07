@@ -13,9 +13,10 @@ interface BrewdogProps {
     getFoodBeers: (food: string) => void;
     beers: Beer[];
     loadingBeers: boolean;
+    selectBeer: (beer: Beer) => void;
 }
 
-function Brewdog({ getAllBeers, getFoodBeers, beers, loadingBeers }: BrewdogProps) {
+function Brewdog({ getAllBeers, getFoodBeers, beers, loadingBeers, selectBeer }: BrewdogProps) {
     const [ currentSwipeable, setCurrentSwipeable ] = React.useState(0);
     let brewSwiper: Swiper;
     
@@ -64,9 +65,9 @@ function Brewdog({ getAllBeers, getFoodBeers, beers, loadingBeers }: BrewdogProp
               
             <div className="swiper-container">
                 <div className="swiper-wrapper">
-                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
-                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
-                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} /></div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} selectBeer={selectBeer} /></div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} selectBeer={selectBeer} /></div>
+                    <div className="swiper-slide"><BrewdogBeers beers={beers} loadingBeers={loadingBeers} selectBeer={selectBeer} /></div>
                    
                 </div>
             </div>

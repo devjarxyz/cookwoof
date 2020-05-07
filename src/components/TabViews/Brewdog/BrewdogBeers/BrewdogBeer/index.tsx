@@ -3,11 +3,12 @@ import { Beer } from '../../../../../data/beers/types';
 
 interface BrewdogBeerProps {
     beer: Beer;
+    selectBeer: (beer: Beer) => void;
 }
 
-const BrewdogBeer = ({beer}: BrewdogBeerProps) => {
+const BrewdogBeer = ({beer, selectBeer}: BrewdogBeerProps) => {
     return (
-        <div className="beer-container" onClick={() => console.log('clicked', beer)}>
+        <div className="beer-container" onClick={() => selectBeer(beer)}>
             <div className="beer-container--image-wrapper">
                 {!beer.image_url ? <h3>No Image</h3>:  <img src={beer.image_url} />}
                

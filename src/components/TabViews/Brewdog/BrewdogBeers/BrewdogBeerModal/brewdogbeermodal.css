@@ -1,0 +1,96 @@
+.beer-modal {
+    -moz-transform: translateY(0.25rem);
+    -webkit-transform: translateY(0.25rem);
+    -ms-transform: translateY(0.25rem);
+    transform: translateY(0.25rem);
+    -moz-transition: opacity 0.325s ease-in-out, -moz-transform 0.325s ease-in-out;
+    -webkit-transition: opacity 0.325s ease-in-out, -webkit-transform 0.325s ease-in-out;
+    -ms-transition: opacity 0.325s ease-in-out, -ms-transform 0.325s ease-in-out;
+    transition: opacity 0.325s ease-in-out, transform 0.325s ease-in-out;
+    padding: 6.5rem 1.5rem 1.5rem 1.5rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    position: absolute;
+    
+    max-width: 100%;
+    background-color: transparent;
+    border-radius: 4px;
+    opacity: 0;
+    display: none;
+}
+
+.beer-modal.active {
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1
+}
+
+.beer-modal--container {
+    position: relative;
+    background-color: transparent;
+
+}
+
+.beer-modal--container {
+    background-color: #333;
+    color: white;
+    display: flex;
+    overflow: hidden;
+    height: 40vh;
+    max-height: 400px;
+    max-width: 600px;
+}
+
+.beer-modal--container-info-container--left-child, .beer-modal--container-info-container--right-child {
+    width: 50%;
+    flex: 1 0 0;
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.beer-modal--container-info-container--right-child--button {
+    margin: auto;
+}
+.beer-modal--container-info-container--right-child--image {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.beer-modal--container-info-container--right-child--image .img {
+  
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.beer-modal-close-button-container button {
+    padding: 4px;
+    background: red;
+    outline: none;
+    border: none;
+    margin: 4px 4px 4px 0;
+    font-size: 16px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+.beer-modal--container-info-container--right-child--button button {
+    padding: 8px;
+    background: white;
+    outline: none;
+    border: none;
+    margin: 4px 4px 4px 0;
+    font-size: 16px;
+    border-radius: 10px;
+    font-weight: 700;
+}
