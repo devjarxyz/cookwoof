@@ -26,12 +26,21 @@ function Footer () {
     }, [ footerShow ])
 
     const touchStartHandler = (event: React.TouchEvent<HTMLElement>) => {
-        console.log('start', event.touches);
-        setStartPos(event.touches[0].clientY);
+        event.preventDefault();
+        
+        if((event.target as any).name === 'plusButton') {
+            console.log('adding more beer');
+        } else if ((event.target as any).name === 'minusButton') {
+            console.log('removing beer, sad face');
+        } else {
+            setStartPos(event.touches[0].clientY);
+        }
+        
 
     }
 
     const touchEndHandler = (event: React.TouchEvent<HTMLElement>) => {
+        event.preventDefault();
         const touch = event.changedTouches[0];
         const swipeUp = touch.clientY < startPos;
         const absY = Math.abs(touch.clientY - startPos);
@@ -51,6 +60,7 @@ function Footer () {
     }
 
     const touchMoveHandler = (event: React.TouchEvent<HTMLElement>) => {
+        event.preventDefault();
         console.log('move', event.changedTouches);
     }
 
@@ -63,9 +73,13 @@ function Footer () {
                    <p><FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart </p>
                 </header>
                 <div onTouchStart={(e) => touchStartHandler(e)}
-        onTouchEnd={(e) => touchEndHandler(e)}
-        onTouchMove={(e) => touchMoveHandler(e)}>
+                    onTouchEnd={(e) => touchEndHandler(e)}
+                    onTouchMove={(e) => touchMoveHandler(e)}>
                     some data bal blalb alblb ba
+                    <div>
+                        <button name="minusButton" >click me</button>
+                        <button name="plusButton" >click me</button>
+                    </div>
                 </div>
                 <div className="copyright" >
                     &copy; cookwoof. All rights reserved.
