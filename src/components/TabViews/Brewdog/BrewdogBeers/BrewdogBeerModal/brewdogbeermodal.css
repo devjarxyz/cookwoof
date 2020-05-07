@@ -94,3 +94,10 @@
     border-radius: 10px;
     font-weight: 700;
 }
+.beer-modal--container-info-container--left-child  {
+    overflow-y: auto;
+}
+
+.beer-modal--container-info-container--left-child p {
+    margin: 4px 2px;
+}

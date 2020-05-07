@@ -11,6 +11,8 @@ interface BrewdogBeerModalProps {
 
 function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
     const modalRef = React.useRef<HTMLDivElement>(null);
+    const [ showfullDesc, setShowFulldesc ] = React.useState(false);
+    const [ showfullPairing, setShowFullPairing ] = React.useState(false);
 
     React.useEffect(() => {
         
@@ -38,6 +40,28 @@ function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
            
           };
     }, [isActive]);
+    
+    const getdescTextElement = (text: string) => {
+            return text && text.length > 20 && !showfullDesc ? (
+                <p onClick={() => setShowFulldesc(prev => true)}>{text.substring(0, 20)} [show more]</p>
+            ) : (
+                <p onClick={() => setShowFulldesc(prev => false)}>{text}</p>
+            );
+    };
+    const getfoodTextElement = (text: string[]) => {
+        if(text) {
+            let t = text.join(' ');
+            return t && t.length > 20 && !showfullPairing ? (
+                
+                <p onClick={() => setShowFullPairing(prev => true)}>{text[0].substring(0, 20)} [show more]</p>
+            ) : (
+                <p onClick={() => setShowFullPairing(prev => false)}>{text}</p>
+            );
+        } else {
+            return null;
+        }
+        
+    };
 
     return ReactDOM.createPortal(
         <div className="beer-modal" ref={modalRef}>
@@ -50,8 +74,10 @@ function BrewdogBeerModal ({beer, close, isActive}: BrewdogBeerModalProps) {
                 <div className="beer-modal--container-info-container--left-child">
                     <h4>{beer.name}</h4>
                     <p>{beer.tagline}</p>
-                    <p>{beer.description}</p>
-                    <p>{beer.food_pairing}</p>
+                    <p>{beer.abv}</p>
+                    {getdescTextElement(beer.description)}
+                    {getfoodTextElement(beer.food_pairing)}
+                   
                 </div>
                 <div className="beer-modal--container-info-container--right-child">
                     <div className="beer-modal--container-info-container--right-child--image">
