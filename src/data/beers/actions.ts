@@ -5,7 +5,11 @@ import {
     BrewdogAllBeersSuccessAction,
     BrewdogAllBeersErrorAction,
     TabTypes,
-    SetCurrentTabAction, 
+    SetCurrentTabAction,
+    AddBeerAction,
+    RemoveBeerAction,
+    PlusBeerAction,
+    MinusBeerAction, 
 } from './types';
 
 
@@ -53,5 +57,32 @@ export const setCurrentTab = (tab: TabTypes): SetCurrentTabAction => ({
     type: BrewdogBeersTypes.SET_CURRENT_TAB_REQUEST,
     payload: {
         tab
+    }
+});
+
+export const addBeer = (beer: Beer): AddBeerAction => ({
+    type: BrewdogBeersTypes.ADD_BEER_REQUEST,
+    payload: {
+        beer
+    }
+});
+
+export const removeBeer = (beer: Beer): RemoveBeerAction => ({
+    type: BrewdogBeersTypes.REMOVE_BEER_REQUEST,
+    payload: {
+        beer
+    }
+});
+export const plusBeer = (beer: Beer): PlusBeerAction => ({
+    type: BrewdogBeersTypes.PLUS_BEER_REQUEST,
+    payload: {
+        beer
+    }
+});
+
+export const minusBeer = (beer: Beer): MinusBeerAction => ({
+    type: BrewdogBeersTypes.MINUS_BEER_REQUEST,
+    payload: {
+        beer
     }
 });

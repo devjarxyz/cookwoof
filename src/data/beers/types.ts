@@ -25,14 +25,14 @@ export enum TabTypes {
 export interface AddBeerAction {
     type: BrewdogBeersTypes.ADD_BEER_REQUEST;
     payload: {
-        tab: Beer;
+        beer: Beer;
     }
  
  }
  export interface RemoveBeerAction {
     type: BrewdogBeersTypes.REMOVE_BEER_REQUEST;
     payload: {
-        tab: Beer;
+        beer: Beer;
     }
  
 }
@@ -40,15 +40,15 @@ export interface AddBeerAction {
 export interface MinusBeerAction {
     type: BrewdogBeersTypes.MINUS_BEER_REQUEST;
     payload: {
-        tab: Beer;
+        beer: Beer;
 
     }
  
 }
 export interface PlusBeerAction {
-    type: BrewdogBeersTypes.MINUS_BEER_REQUEST;
+    type: BrewdogBeersTypes.PLUS_BEER_REQUEST;
     payload: {
-        tab: Beer;
+        beer: Beer;
         
     }
  
@@ -155,7 +155,8 @@ export interface IngredientsData {
 }
 
 export type BrewdogTypes = BrewdogAllBeersRequestAction | BrewdogAllBeersSuccessAction | BrewdogAllBeersErrorAction |
-                            BrewdogFoodBeersRequestAction | BrewdogFoodBeersSuccessAction | BrewdogFoodBeersErrorAction | SetCurrentTabAction;
+                            BrewdogFoodBeersRequestAction | BrewdogFoodBeersSuccessAction | BrewdogFoodBeersErrorAction | SetCurrentTabAction |
+                            AddBeerAction | RemoveBeerAction | PlusBeerAction | MinusBeerAction;
 
 /**
  * A more generic way to check, for future scaling, type-guarding with ts is rather nice
