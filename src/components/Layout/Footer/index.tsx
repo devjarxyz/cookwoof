@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../data/root-reducer';
 import { Cart, Beer } from '../../../data/beers/types';
 import { bindActionCreators } from 'redux';
 import { plusMoreBeer, minusLessBeer, removeTheBeer } from '../../../data/beers/actions';
+import FooterCart from './FooterCart';
 
 interface FooterProps {
     cart: Cart[];
@@ -40,26 +42,27 @@ function Footer ({ cart, plusBeer, minusBeer, removeBeer}: FooterProps) {
     }, [ footerShow ])
 
     const touchStartHandler = (event: React.TouchEvent<HTMLElement>) => {
-        
+    
         let name: string = (event.target as any).name;
-        if(name) {
+       
+        if(name && name.includes('--')) {
             
-            if(name.includes('plusButton')) {
+            if(name.includes('plus')) {
                 
                 let beer: Beer = cart.find((item) => item.beer.id === parseInt(name.split('--')[1]))?.beer!;
-                console.log(beer);
+                
                 plusBeer(beer!);
                 
             setUsedButton(true);
         
-            } else if (name.includes('minusButton')) {
+            } else if (name.includes('minus')) {
                 let beer: Beer = cart.find((item) => item.beer.id === parseInt(name.split('--')[1]))?.beer!;
-                console.log(beer);
+               
                 minusBeer(beer!);
                
             setUsedButton(true);
         
-            } else if (name.includes('removeButton')) {
+            } else if (name.includes('trash')) {
                 let beer: Beer = cart.find((item) => item.beer.id === parseInt(name.split('--')[1]))?.beer!;
               
                 removeBeer(beer!);
@@ -86,15 +89,15 @@ function Footer ({ cart, plusBeer, minusBeer, removeBeer}: FooterProps) {
         //compare position, figure if its up or down
         const swipeUp = touch.clientY < startPos;
         const absY = Math.abs(touch.clientY - startPos);
-        console.log(absY);
+      
         if(absY > minDistance) {
            
             if(swipeUp){
-                console.log('up')
+               
                 setFooterShow({fullFooter: true, halfFooter: false});
               
             } else {
-                console.log('down   ')
+               
                 setFooterShow({fullFooter: false, halfFooter: false});
             }
         }
@@ -110,39 +113,27 @@ function Footer ({ cart, plusBeer, minusBeer, removeBeer}: FooterProps) {
         <section className="footer" ref={footerRef} 
         >
             <div className="inner">
-                <header  onClick={() => { console.log('clicked'); setFooterShow({fullFooter: false, halfFooter: !footerShow.halfFooter });}} style={{margin: '4px 0'}}>
+                <header  onClick={() => { setFooterShow({fullFooter: false, halfFooter: !footerShow.halfFooter });}} style={{margin: '4px 0'}}>
                    <hr style={{width: '5%', margin: '2px auto'}}/>
                    <p><FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart </p>
                 </header>
                 <div onTouchStart={(e) => touchStartHandler(e)}
                     onTouchEnd={(e) => touchEndHandler(e)}
                     onTouchMove={(e) => touchMoveHandler(e)}
-                    style={{margin: '20px 0', minHeight: '150px', width: '100%'}}
+                    style={{margin: '20px 0', width: '100%', height: '100%'}}
                 >
-                    <div>{ cart.length > 0 && cart.map((item) => {
-                        return (
-                            <div key={item.beer.id}>
-                                <p>{item.beer.name} -  {item.amount}</p>
-                                <button name={`plusButton--${item.beer.id}`} >Plus</button>
-                                <button name={`minusButton--${item.beer.id}`}>Minus</button>
-                                <button name={`removeButton--${item.beer.id}`} >Remove</button>
-                            </div>
-                        );
-                    })} { cart.length === 0 && 
-                    
-                        <div>
-                            <p>Beer -  0</p>
-                            <button >Plus</button>
-                            <button >Minus</button>
-                            <button >Remove</button>
-                        </div>
+                    { cart.length > 0 && cart.map((item) => {
+                        
+                        return <React.Fragment key={item.beer.id}><FooterCart beer={item.beer} amount={item.amount} /></React.Fragment>
+                    })} 
+                    { cart.length === 0 && 
+                        <FooterCart beer={undefined} amount={0} />
                     }
+                    <div className="copyright" >
+                        &copy; cookwoof. All rights reserved.
                     </div>
-                   
                 </div>
-                <div className="copyright" >
-                    &copy; cookwoof. All rights reserved.
-                </div>
+                
             </div>
            
         </section>
